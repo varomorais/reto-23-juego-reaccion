@@ -1,20 +1,32 @@
-let game_started = false
-basic.forever(function () {
-    game_started = false
-    basic.pause(randint(1000, 5000))
-    game_started = true
-    basic.showIcon(IconNames.Heart)
-    while (game_started) {
-        if (input.pinIsPressed(TouchPin.P1)) {
-            basic.showString("A")
-            game_started = false
-        } else {
-            if (input.pinIsPressed(TouchPin.P2)) {
-                basic.showString("B")
-                game_started = false
-            }
-        }
+input.onPinPressed(TouchPin.P0, function () {
+    for (let index = 0; index <= 2; index++) {
+    	
     }
-    basic.pause(1000)
-    basic.clearScreen()
+    game_started = true
 })
+function MuestraTiempo () {
+	
+}
+input.onPinPressed(TouchPin.P2, function () {
+    if (game_started) {
+        game_started = false
+        basic.showString("winB")
+        puntB += 1
+    } else {
+        basic.showString("A")
+        puntA += 1
+    }
+})
+input.onPinPressed(TouchPin.P1, function () {
+    if (game_started) {
+        game_started = false
+        basic.showString("winA")
+        puntA += 1
+    } else {
+        basic.showString("B")
+        puntB += 1
+    }
+})
+let game_started = false
+let puntA = 0
+let puntB = 0
